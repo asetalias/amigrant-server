@@ -3,7 +3,7 @@ package app
 import (
 	"io"
 
-	v1 "github.com/achintya-7/go-template-server/internal/controller/v1"
+	v1 "github.com/asetalias/amigrant-server/internal/controller/v1"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -23,7 +23,7 @@ func NewServer() *Server {
 func (s *Server) setupRoutes() {
 	router := gin.Default()
 
-	baseRouter := router.Group("/service-name")
+	baseRouter := router.Group("/amigrant")
 
 	// disable gin logs
 	gin.DefaultWriter = io.Discard
@@ -40,4 +40,8 @@ func (s *Server) setupRoutes() {
 	}))
 
 	s.router = router
+}
+
+func (s *Server) Start(port string) error {
+	return s.router.Run(":" + port)
 }

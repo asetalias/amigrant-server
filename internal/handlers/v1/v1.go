@@ -1,7 +1,7 @@
 package v1
 
 import (
-	"github.com/achintya-7/go-template-server/internal/dto"
+	"github.com/asetalias/amigrant-server/internal/dto"
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,10 +12,8 @@ func NewRouteHandler() *RouteHandler {
 	return &RouteHandler{}
 }
 
-func (*RouteHandler) PrivateHello(context *gin.Context) (*gin.H, *dto.ErrorResponse) {
-	return &gin.H{"message": "Hello World from a private API"}, nil
-}
+func (rh *RouteHandler) Ping(ctx *gin.Context) (*string, *dto.ErrorResponse) {
+	response := "pong"
 
-func (*RouteHandler) PublicHello(context *gin.Context) (*gin.H, *dto.ErrorResponse) {
-	return &gin.H{"message": "Hello World from a public API"}, nil
+	return &response, nil
 }

@@ -7,28 +7,17 @@ import (
 )
 
 type Config struct {
-	Dev  bool   `mapstructure:"DEV"`
 	Port string `mapstructure:"PORT" required:"true"`
 }
 
-func LoadConfig() (*Config, error) {
+func LoadConfig() *Config {
 	var config Config
 
-	viper.AddConfigPath("../../")
-	viper.SetConfigName("app")
-	viper.AutomaticEnv()
-
-	err := viper.ReadInConfig()
-	if err != nil {
-		log.Println("Error reading config file or maybe it was not present: ", err.Error())
-		return nil, err
+	port := viper.GetString("PORT")
+	if port == "" {
+		log.Println("PORT not set, using default (8080)")
+		config.Port = "8080"
 	}
 
-	err = viper.Unmarshal(&config)
-	if err != nil {
-		log.Println("Unable to decode into struct, ", err.Error())
-		return nil, err
-	}
-
-	return &config, nil
+	return &config
 }

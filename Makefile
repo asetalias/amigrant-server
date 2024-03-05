@@ -1,2 +1,3 @@
-mock_mongo:
+start:
+	go run cmd/app/main.go
 	

@@ -3,8 +3,7 @@ package util
 import (
 	"net/http"
 
-	"github.com/achintya-7/go-template-server/internal/dto"
-
+	"github.com/asetalias/amigrant-server/internal/dto"
 	"github.com/gin-gonic/gin"
 )
 
